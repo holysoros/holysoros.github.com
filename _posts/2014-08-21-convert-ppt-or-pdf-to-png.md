@@ -6,16 +6,6 @@ category:
 tags: []
 ---
 
-{% highlight ruby %}
-def show
-  @widget = Widget(params[:id])
-  respond_to do |format|
-    format.html # show.html.erb
-    format.json { render json: @widget }
-  end
-end
-{% endhighlight %}
-
 使用 `docsplit` 可以将 PDF/PPT 转化为 Image(JPEG, PNG等)。事实上 [Docsplit](http://documentcloud.github.io/docsplit/) 是一个很强大的工具：Docsplit is a command-line utility and Ruby library for splitting apart documents into their component parts. Under the hood, Docsplit is a thin wrapper around the excellent GraphicsMagick, Poppler, PDFTK, Tesseract, and LibreOffice libraries. 
 
 - 将文档的每一页保存为一张图片
@@ -59,13 +49,12 @@ end
 
     Retrieve a piece of metadata about the document. The docsplit utility will print to stdout, the Ruby API will return the value.
 
-    {% highlight bash %}
+    ```
     docsplit title path/to/stooges.pdf
     => Disorder in the Court
     Docsplit.extract_length('path/to/stooges.pdf')
     => 36
-    {% endhighlight %}
-
+    ```
 
 开始转 PPT 为 PNG
 ------
@@ -80,6 +69,7 @@ end
 Linux 系统的字体设置很复杂，至今我也没太搞明白，可以从下面网站下载更多字体： http://wenq.org/cloud/fcdesigner_local.html
 
 PPT 中使用的字体，在 Ubuntu 服务器上可能没有安装，这样会 Fallback 到使用系统可用的中文字体，导致生成的图片与原 PPT 中字体不一样。有两种方式可以解决这个问题：
+
 - 安装缺少的字体，但是上传的 PPT 中可能使用各式各样的字体，即使安装再多的字体也无法完全避免这个问题;
 - 要求用户在自己电脑上使用 PPT 软件将要上传的 PPT 文件导出为 PDF 格式，然后上传 PDF 文件，服务器将 PDF 文件转为 PNG 图片；
 
