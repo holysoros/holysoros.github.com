@@ -25,7 +25,7 @@ travis-ci可以在你每次向github上的某个repository提交代码后，帮�
 
 如下是我的travis-ci的配置
 
-```YAML
+```yaml
 language: python
 
 python:
