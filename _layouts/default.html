@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width">
 
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
 
-        <!-- Solarized theme for highlighting code -->
-        <link rel="stylesheet" href="/assets/css/solarized-dark.css">
-        <link rel="stylesheet" href="/assets/css/solarized.css">
+    <!-- Solarized theme for highlighting code -->
+    <link rel="stylesheet" href="/assets/css/solarized-dark.css">
+    <link rel="stylesheet" href="/assets/css/solarized.css">
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
 
-    </head>
-    <body>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+       var hm = document.createElement("script");
+       hm.src = "//hm.baidu.com/hm.js?0d2ec6f2b56aa6cff51d1c3417d63b1b";
+       var s = document.getElementsByTagName("script")[0];
+       s.parentNode.insertBefore(hm, s);
+       })();
+    </script>
+  </head>
+  <body>
 
-        <div class="site">
-          <div class="header">
-            <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-            <a class="extra" href="/">Home</a>
-          </div>
+    <div class="site">
+      <div class="header">
+        <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+        <a class="extra" href="/">Home</a>
+      </div>
 
-          {{ content }}
+      {{ content }}
 
-          <div class="footer">
-            <div class="contact">
-              <p>
-                LiJunjie<br />
-                Software Engineer<br />
-                holysoros@gmail.com
-              </p>
-            </div>
-            <div class="contact">
-              <p>
-                <a href="https://github.com/holysoros">github.com/holysoros</a><br />
-                <a href="https://twitter.com/Holy.Li">twitter.com/Holy.Li</a><br />
-              </p>
-            </div>
-          </div>
+      <div class="footer">
+        <div class="contact">
+          <p>
+            LiJunjie<br />
+            Software Engineer<br />
+            holysoros@gmail.com
+          </p>
         </div>
+        <div class="contact">
+          <p>
+            <a href="https://github.com/holysoros">github.com/holysoros</a><br />
+            <a href="https://twitter.com/Holy.Li">twitter.com/Holy.Li</a><br />
+          </p>
+        </div>
+      </div>
+    </div>
 
-    </body>
+  </body>
 </html>
