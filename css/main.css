@@ -160,4 +160,4 @@ a:visited { color: #a0a; }
 }
 
 /* my customization */
-img[alt=drawing] { width: 600px; }
+img { width: 100%; }
