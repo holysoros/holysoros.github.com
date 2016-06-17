@@ -10,16 +10,19 @@ ActiveRecord 并没有直接提供随机获取的接口，有以下几种方法�
 
 初级
 ------
-
-	Model.all.sample(n)
+```ruby
+Model.all.sample(n)
+```
 
 返回 Model 的所有 records ，浪费带宽，浪费内存，效率奇差，无节操。
 
 进阶
 ------
 
-	ids = Model.pluck(:id).sample(n)
-	Model.where(id: ids)
+```ruby
+ids = Model.pluck(:id).sample(n)
+Model.where(id: ids)
+```
 
 先返回 Model 的所有 records 的 id ，然后随机选择 n 个，再次用 where 请求数据；效率不错，很有节操了。
 
@@ -27,10 +30,12 @@ ActiveRecord 并没有直接提供随机获取的接口，有以下几种方法�
 ------
 数据库本身通常都提供 random 的语句，结合 ActiveRecord 的 order 可以用于获取随机 records ：
 
-	# mysql
-	Model.order("RAND()").first(n)
-	# PostgreSQL and sqlite
-	Model.order("RANDOM()").first(n)
+```ruby
+# mysql
+Model.order("RAND()").first(n)
+# PostgreSQL and sqlite
+Model.order("RANDOM()").first(n)
+```
 
 看起来很牛逼的样子，只需要因此 DB query ，但是违背了 ActiveRecord 的 database-agnostic 原则，而且数据库本身的 RANDOM 实现的效率并不高。
 
@@ -41,15 +46,19 @@ ActiveRecord 并没有直接提供随机获取的接口，有以下几种方法�
 ------
 如果只想随机选择一个 record ，这种方法也是一个可选项：
 
-	offset = rand(Model.count)
-	Model.offset(offset).first
+```ruby
+offset = rand(Model.count)
+Model.offset(offset).first
+```
 
 结论
 ------
 因此，看起来进阶的方法是最靠谱的：
 
-	ids = Model.pluck(:id).sample(n)
-	Model.where(id: ids)
+```ruby
+ids = Model.pluck(:id).sample(n)
+Model.where(id: ids)
+```
 
 达到了各方面平衡。
 
