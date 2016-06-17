@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link href="//cdn.bootcss.com/reveal.js/3.3.0/css/reveal.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/reveal.js/3.3.0/css/theme/black.min.css" rel="stylesheet">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link href="//cdn.bootcss.com/reveal.js/3.3.0/lib/css/zenburn.min.css" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '//cdn.bootcss.com/reveal.js/3.3.0/css/print/pdf.min.css' : '//cdn.bootcss.com/reveal.js/3.3.0/css/print/paper.min.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>基于 Spree 开发国内典型电商</h1>
+          <p>李斌 @holysoros</p>
+        </section>
+        <section>
+          <section>
+            <h2>自我介绍</h2>
+            <h3><a href="http://julewu.com">居乐屋</a>：家装主材的 B2B 电商平台</h3>
+            <ul>
+              <li>架构师</li>
+              <li>08 年毕业；桌面开发、嵌入式、流媒体、Linux 高性能服务、HA、DevOps、直播平台、Android</li>
+              <li>2014 开始 Ruby & Rails 历程</li>
+              <li>爱好：精酿啤酒及自酿</li>
+            </ul>
+          </section>
+          <section>
+            <h3>自酿原料-麦芽</h3>
+            <img height="550" data-src="/assets/images/spree/beer_1.jpg" alt="自酿原料-麦芽"/>
+          </section>
+          <section>
+            <h3>发酵桶</h3>
+            <img height="550" data-src="/assets/images/spree/beer_2.jpg" alt="发酵桶"/>
+          </section>
+          <section>
+            <h3>Cheers</h3>
+            <img height="550" src="/assets/images/spree/beer_3.jpg" alt="自酿成果" />
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Spree 简介与案例展示
+
+              ![Alt text](/assets/images/spree/spree_logo.png)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ![Alt text](/assets/images/spree/spree.jpg)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### 案例展示
+              - [Spree storefront](http://localhost:4000)
+              - [AYR](https://www.ayr.com/)
+              - [Bonobos](https://bonobos.com/)
+              - [居乐屋](http://mall.julewu.com/)
+            </script>
+          </section>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Spree 价值观
+            Spree is also "opinionated software" as Rails.
+            - No Solution Will Satisfy Everyone
+            - Online Commerce is not for “Noobs”
+            - Developers Need Complete Control
+            - Stay Focused
+          </script>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Spree Modules and Architecture
+
+              ![Alt text](/assets/images/spree/spree_components.png)
+
+              Each one is Rails Engine。
+              - spree_core (Models, bussiness logic, Mailers and searcher)
+              - spree_api (RESTful API)
+              - spree_backend (Admin panel)
+              - spree_frontend (Customer frontend)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Spree 业务模块
+
+              - 商品管理：variant、taxon、image、property；
+              - 库存管理：多仓库、物流分配、调货；
+              - 订单管理：订单分包、订单状态流转、等；
+              - 支付：支付方式、支付状态、收款、退款；
+              - 物流管理；
+              - 退货/退款；
+              - 营销管理：各种促销；
+            </script>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Spree 定制开发方式
+              Spree 定制的机制利用如下特性：
+              - Ruby Open Class，`Spree::Product.class_eval`；
+              - Rails Engine 的特性；
+              - CSS 覆盖的特性；
+              - Javascript 函数覆写；
+              - [Deface](https://github.com/spree/deface)；
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Rails Engine 的特性
+              - 查找 assets 与 views 时，先在 main app 中查找，然后再在 engine 中查找；
+              - 加载代码时，先加载 engine ，然后 main app ；
+              - 各种 initializers ，都是先 engine ，然后 main app ；如：`initialization events(before_initialize/to_prepare), config/initializers/*` 等；
+            </script>
+          </section>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## 为什么使用 Spree
+            - 电商领域建模；
+            - 可靠、设计精良的 RESTful API；
+            - 可用的 Admin panel ；
+            - 可参考的 frontend ；
+            - test coverage;
+            - 参考学习的对象；
+          </script>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## 我们定制 Spree 的方式
+              ![Alt text](/assets/images/spree/julewu.png)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## 我们定制 Spree 的方式
+              ```ruby
+              gem 'spree_core', '~> 3.0.8'
+              gem 'spree_api', '~> 3.0.8'
+              gem 'spree_backend', '~> 3.0.8'
+              # our custom extensions list below
+              gem 'spree_julewu'
+              gem 'spree_auth_sorcery'
+              gem 'spree_simditor'
+              gem 'spree_pingpp'
+              gem 'spree_chinapay'
+              ```
+            </script>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Spree 与支付
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### 支付模式
+              - Gateway 模式；
+              - Integration 模式；
+
+              Spree 使用的是 Gateway 模式，导致整个支付模块的精良设计在国内无法使用。Integration 模式照样可以与 Spree 集成。[better_spree_paypal_express](https://github.com/spree-contrib/better_spree_paypal_express)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### 两步支付(预授权)
+              - authorize
+              - capture/cancel
+            </script>
+          </section>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Spree 没有什么
+            - 没有运营可以定制的首页；
+            - 没有真正的"购物车"；
+            - 没有产品动态属性筛选；
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Spree vs Solidus
+            - Coopetition
+            - Sep 2015 Spree Commerce Inc acquired by First Data.
+            - Oct 2015 Solidus fork from Spree 2.4.
+            - Jan 2016 Spree got new Backers.
+            - Jan 2016 Thomas von Deyen(creator of AlchemyCMS) join Solidus Core Team.
+
+            Refer to [Spree vs Solidus: Which is Right For You?](https://resolve.digital/blog/posts/spree-vs-solidus/)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## "典型"电商的其他部分
+            - 首页由运营定制: AlchemyCMS
+            - 商品搜索与动态属性筛选: solr and sunspot
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## References
+            - [Spree Slack](http://slack.spreecommerce.com/)
+            - [Solidus Slack](http://slack.solidus.io/)
+            - [Spree Android Demo App](https://github.com/vinsol/spree-android)
+            - [Spree iOS Demo App - ShopSpree(Oops)](https://itunes.apple.com/us/app/shopspree/id820945930?ls=1&mt=8)
+            - [Spark Starter Kit - Rails + Spree + ReactJS (Universal) + Redux + ES6 (Babel6) + Webpack + Hot Reload](https://github.com/spark-solutions/spark-starter-kit)
+            - [AlchemyCMS](http://alchemy-cms.com/)
+          </script>
+        </section>
+      </div>
+    </div>
+
+    <script src="//cdn.bootcss.com/reveal.js/3.3.0/lib/js/head.min.js"></script>
+    <script src="//cdn.bootcss.com/reveal.js/3.3.0/js/reveal.min.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: '//cdn.bootcss.com/reveal.js/3.3.0/plugin/markdown/marked.min.js' },
+          { src: '//cdn.bootcss.com/reveal.js/3.3.0/plugin/markdown/markdown.min.js' },
+          { src: '//cdn.bootcss.com/reveal.js/3.3.0/plugin/notes/notes.min.js', async: true },
+          { src: '//cdn.bootcss.com/reveal.js/3.3.0/plugin/highlight/highlight.min.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
